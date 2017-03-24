@@ -1,0 +1,318 @@
+% $Rev: 111 $
+% $Date: 2017-02-20 15:38:40 -0800 (Mon, 20 Feb 2017) $
+% $LastChangedBy: jlperla $
+
+
+% Author: Alistair Wilson, Jesse Perla (c) 2008
+% Use, modification and distribution are subject to the 
+% Boost Software License, Version 1.0. (See accompanying file 
+% LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+%
+% Modifed from Original file by Alistair Wilson
+
+\usepackage{etk-packages}
+
+%Utilities for displaying math functions
+%NOTE: SHOULD WE BE USING \DeclareMathOperator from amstex for some of these?  It is supposed to do spacing around pseudo-operators better.
+
+
+\newenvironment{notation}[2][\textwidth]{\textbf{#2}\\ \begin{boxedminipage}[t]{#1}}{\end{boxedminipage}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{property}{Property}
+\newcommand{\semitransp}[2][35]{\color{fg!#1}#2} %\semitransp[20]{text} is lighter transparency, etc.
+
+\newcommand{\seq}[3][1]{\ensuremath{\left\{ {#2}_{#1},\dots, {#2}_{#3} \right\}}}
+\newcommand{\Seq}[3][1]{\ensuremath{\left\{ {#2}^{#1},\dots, {#2}^{#3} \right\}}}
+\newcommand{\SEQ}[3]{\ensuremath{\left\{ {#1}\left({#2}\right) \right\}_{{#3}}}}
+
+\newcommand{\seqdeff}[4]{\ensuremath{\left\{{#1}_{{#2}}\right\}_{{#2} = {#3}}^{{#4}}}}
+\newcommand{\seqb}[4]{\ensuremath{\left({#1}\right)_{{#2} = {#3}}^{{#4}}}}
+\newcommand{\seqc}[4]{\ensuremath{\left\{{#1}\right\}_{{#2} = {#3}}^{{#4}}}}
+\newcommand{\seqdeFF}[4]{\ensuremath{\left\{{#1}^{{#2}}\right\}_{{#2} = {#3}}^{{#4}}}}
+\newcommand{\seqdeffs}[5]{\ensuremath{\left\{{#1}_{{#2}_{{#3}}}\right\}_{{#3} = {#4}}^{{#5}}}}
+\newcommand{\seqdefi}[3]{\ensuremath{\left\{{#1}_{{#2}}\right\}_{{#2} \in {#3}}}}
+\newcommand{\seqdefis}[4]{\ensuremath{\left\{{#1}_{{#2}_{{#3}}}\right\}_{{#3} \in {#4}}}}
+
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
+\newcommand{\tpd}[2]{\ensuremath{\tfrac{\partial#1}{\partial#2}}}
+
+\newcommand{\inprod}[2]{\ensuremath{\left\langle{#1},{#2}\right\rangle}}
+\newcommand{\setdefine}[2]{\ensuremath{\left\{{#1}\left|{#2}\right.\right\}}}
+\newcommand{\set}[1]{\ensuremath{\left\{{#1}\right\}}}
+\newcommand{\inset}[1]{\ensuremath{\in \{#1\}}}
+
+\newcommand{\fseq}[2][]{\ensuremath{\left\{{#1}_{1},\dots, {#1}_{{#2}} \right\}}}
+\newcommand{\nseq}[1]{\ensuremath{\left\{1,\dots, {#1}\right\}}}
+\newcommand{\fdef}[3]{\ensuremath{{#1}:{#2}\rightarrow{#3}}}
+\newcommand{\FDEF}[5]{\ensuremath{{#1}:{#2}\rightarrow{#3}:{#4}\mapsto{#5}}}
+\newcommand{\fdeff}[4]{\ensuremath{{#1}:{#2}\times{#3}\rightarrow{#4}}}
+\newcommand{\RN}[1]{\ensuremath{\mathbb{R}^{{#1}}}}
+\newcommand{\N}[1][]{\ensuremath{\mathbb{N_{#1}}}}
+\newcommand{\B}[0]{\ensuremath{\mathbb{B}}}
+\newcommand{\Q}[0]{\ensuremath{\mathbb{Q}}}
+\newcommand{\D}[1][]{\ensuremath{\boldsymbol{\partial}_{#1}}}
+\newcommand{\RNh}[2]{\ensuremath{\mathbb{R}^{{#1}}_{{#2}}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\I}{\ensuremath{\mathbb{I}}}
+\newcommand{\Rp}{\ensuremath{\mathbb{R}_{+}}}
+\newcommand{\cinterval}[2]{\ensuremath{\left[ {#1},{#2} \right]}}
+\newcommand{\ointerval}[2]{\ensuremath{\left( {#1},{#2}\right)}}
+\newcommand{\ri}[1]{\ensuremath{\mathrm{ri}\left( {#1} \right)}}
+\newcommand{\conh}[1]{\ensuremath{\mathrm{co}\left( {#1} \right)}}
+\newcommand{\epi}[1]{\ensuremath{\mathrm{epi}\left( {#1} \right)}}
+\newcommand{\closure}[1]{\ensuremath{\overline{{#1}}}}
+\newcommand{\interior}[1]{\ensuremath{\mathrm{int}\left({#1} \right)}}
+\newcommand{\modulo}[2]{\ensuremath{{#1} \mbox{ }\mathrm{mod}\mbox{ }{#2}}}
+\newcommand{\prob}[1]{\ensuremath{\mathbb{P}\left( {#1} \right)}}
+\newcommand{\cprob}[2]{\ensuremath{\mathbb{P}\left( {#1}\left| {#2} \right. \right)}}
+\newcommand{\expec}[2][]{\ensuremath{\mathbb{E}_{{#1}}\left[ {#2} \right]}}
+\newcommand{\hatexpec}[2][]{\ensuremath{\hat{\mathbb{E}}_{{#1}}\left[ {#2} \right]}}
+\newcommand{\condexpec}[3][]{\ensuremath{\mathbb{E}_{#1}\left[{#2} \; \middle| \; {#3} \right]}}
+\newcommand{\hatcondexpec}[3][]{\ensuremath{\hat{\mathbb{E}}_{#1}\left[\left. {#2}\right| {#3} \right]}}
+\newcommand{\stochasticexpec}[3][]{\ensuremath{\mathbb{E}^{{#2}}_{{#1}}\left[ {#3} \right]}}
+\newcommand{\CE}[2][]{\ensuremath{\mathbb{CE}_{{#1}}\left\{ {#2} \right\}}}
+\newcommand{\C}[0]{\ensuremath{\mathbb{C}}}
+\newcommand{\heaviside}[1]{\ensuremath{\mathbb{H}\left( {#1} \right)}}
+\newcommand{\dirac}[1]{\ensuremath{\boldsymbol\delta\left( {#1} \right)}}
+\newcommand{\Variance}[1]{\ensuremath{\mathbb{V}\left\{ {#1} \right\}}}
+\newcommand{\var}[1]{\ensuremath{\mathbb{V}\left[ {#1} \right]}}
+\newcommand{\variance}[2][]{\ensuremath{\mathbb{B}_{{#1}}\left[ {#2} \right]}}
+\newcommand{\cv}[1]{\ensuremath{\mathbb{CV}\left[ {#1} \right]}}
+\newcommand{\problim}[1]{\ensuremath{\substack{{#1}\\ \longrightarrow \\ \mbox{ }}}}
+\newcommand{\abs}[1]{\ensuremath{\left| {#1}\right|}}
+\newcommand{\norm}[1]{\ensuremath{\left\| {#1} \right\|}}
+\newcommand{\xnorm}[2]{\ensuremath{left\| {#1} \right\|_{{#2}}}}
+\newcommand{\smean}[3]{\ensuremath{\frac{1}{{#2}}\sum^{{#2}}_{{#3}=1} {#1}}}
+\newcommand{\setmean}[3]{\ensuremath{\frac{1}{{#2}}\sum_{{#3}} {#1}}}
+\newcommand{\nsmean}[1]{\ensuremath{\frac{1}{{n}}\sum {#1}}}
+\newcommand{\sumN}[2][N]{\ensuremath{\sum^{#1}_{i=1} {#2}}}
+%\newcommand{\nsumi}[1]{\ensuremath{\sum^{n}_{i} {#1}}}
+\newcommand{\indicator}[1]{\ensuremath{\mathds{1}\left\{{#1}\right\}}}
+\newcommand{\Indicator}[1]{\ensuremath{\mathds{1}_{\left\{{#1}\right\}}}}
+\newcommand{\Oprob}[1]{\ensuremath{O_p\left({#1}\right)}}
+\newcommand{\oprob}[1]{\ensuremath{o_p\left({#1}\right)}}
+\newcommand{\limtoinf}[1][n]{\ensuremath{\lim_{#1 \rightarrow \infty}}}
+\newcommand{\infsum}[2]{\ensuremath{\sum^{\infty}_{{#2}=1} {#1}}}
+\newcommand{\infsumz}[2]{\ensuremath{\sum^{\infty}_{{#2}=0} {#1}}}
+\newcommand{\vecdim}[2]{\ensuremath{\left({#1}\times{#2}\right)}}
+\newcommand{\simpvector}[2]{\ensuremath{\left[ \begin{array}{c}{#1}\\{#2}\end{array}\right]}}
+\newcommand{\biperm}[2]{\ensuremath{\left( \begin{array}{c}{#1}\\{#2}\end{array}\right)}}
+\newcommand{\simpmatrix}[4]{\ensuremath{\left[ \begin{array}{c c}{#1}&{#2}\\{#3}&{#4}\end{array}\right]}}
+\newcommand{\fracb}[2]{\ensuremath{\left( \frac{{#1}}{{#2}} \right)}}
+\newcommand{\inparen}[1]{\ensuremath{\left({#1}\right)}}
+\newcommand{\diff}{\ensuremath{\mathrm{d}}}
+\newcommand{\pdiff}[2]{\ensuremath{\frac{\partial {#1}}{\partial {#2}}}}
+\newcommand{\PDIFF}[3]{\ensuremath{\frac{\partial {#1}}{\partial {#2}}\brckts{{#3}}}}
+\newcommand{\Pdiff}[3]{\ensuremath{\frac{\partial^{{#3}} {#1}}{\partial {#2}^{{#3}}}}}
+\newcommand{\tPdiff}[3]{\ensuremath{\tfrac{\partial^{{#3}} {#1}}{\partial {#2}^{{#3}}}}}
+\newcommand{\Pdiffvec}[4]{\ensuremath{\frac{\delta^{{#4}} {#1}}{\partial {#2} \partial {#3}}}}
+\newcommand{\adiff}[2]{\ensuremath{\tfrac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}}
+\newcommand{\sdiff}[2]{\ensuremath{\tfrac{d{#1}}{d{#2}}}}
+\newcommand{\Adiff}[3]{\ensuremath{\tfrac{\mathrm{d}^{#3}{#1}}{\mathrm{d}{#2}^{#3}}}}
+\newcommand{\argmax}[2]{\ensuremath{\mathrm{arg} \max_{{#1}}\left\{ {#2} \right\}}}
+\newcommand{\argmin}[2]{\ensuremath{\mathrm{arg} \min_{{#1}}\left\{ {#2} \right\}}}
+\newcommand{\support}[1]{\ensuremath{\mathrm{support} \left\{ {#1} \right\}}}
+\newcommand{\brackets}[1]{\ensuremath{\left( {#1} \right)}}
+\newcommand{\curly}[1]{\ensuremath{\left\{ {#1} \right\}}}
+\newcommand{\braces}[1]{\ensuremath{\left\{ {#1} \right\}}}
+\newcommand{\infgame}[2]{\ensuremath{{#1}^{\infty}\left( {#2}\right)}}
+\newcommand{\infGame}[3]{\ensuremath{{#1}^{\infty}_{{#2}}\left( {#3}\right)}}
+\newcommand{\easyvec}[2]{\ensuremath{\left[\begin{array}{c} {#1} \\ {#2} \end{array} \right]}}
+\newcommand{\easyc}[2]{\ensuremath{\left(\begin{array}{c} {#1} \\ {#2} \end{array} \right)}}
+\newcommand{\infinity}[0]{\ensuremath{\infty}}
+\newcommand{\erf}[0]{\ensuremath{\mathrm{erf}}}
+\newcommand{\erfi}[0]{\ensuremath{\mathrm{erfi}}}
+\newcommand{\sign}[0]{\ensuremath{\mathrm{sign}}}
+\newcommand{\net}[0]{\ensuremath{\mathrm{net}}}
+%\newcommand{\E}[0]{\ensuremath{\mathbb{E}}}
+\newcommand{\eig}[0]{\ensuremath{\mathrm{eig}}}
+\newcommand{\all}[0]{\ensuremath{\mathrm{all}}}
+\newcommand{\rat}[0]{\ensuremath{\mathrm{rat}}}
+
+
+\newcommand{\sumlimits}[2][\infinity]{\ensuremath{\sum\limits_{#2=0}^{#1}}}
+\newcommand{\sumpdv}[2][\infinity]{\ensuremath{\sum\limits_{#2=0}^{#1}\beta^{#2}}}
+\newcommand{\sumpdvst}[2][\infinity]{\ensuremath{\sum\limits_{#2=0}^{#1}\sum\limits_{s^{#2}}\beta^{#2}}}
+\newcommand{\setlimits}[3][\infinity]{\ensuremath{\left\{{#3}\right\}_{#2=0}^{#1}}}
+
+
+\newcommand{\st}[0]{\,\text{s.t.}\,}
+\newcommand{\lm}[0]{\ensuremath{\boldsymbol\ell}}
+\newcommand{\ow}[0]{\,\text{o.w.}\,}
+\newcommand{\iid}[0]{\text{iid}}
+\newcommand{\forT}[0]{\,\text{for }\,}
+\newcommand{\forallT}[0]{\,\text{for all }\,}
+\newcommand{\ifT}[0]{\,\text{if }\,}
+\newcommand{\Lcal}{\mathcal{L}} %intended for lagrangian
+\newcommand{\Hcal}{\mathcal{H}} %intended for hamiltonian
+
+
+%Distributions
+\newcommand{\normdist}[2]{\ensuremath{\mathrm{N}\left(#1,#2\right)}}
+\newcommand{\lognormdist}[2]{\ensuremath{\mathrm{LN}\left(#1,#2\right)}}
+\newcommand{\paretodist}[2]{\ensuremath{\mathrm{Pareto}\left(#1,#2\right)}}
+\newcommand{\expdist}[1]{\ensuremath{\mathrm{Exp}\left(#1\right)}} %Exponential distribution
+\newcommand{\frechetdist}[2]{\ensuremath{\mathrm{Frechet}(#1, #2)}} %Exponential distribution
+
+
+%If you need colors,
+%\definecolor{emphcolorval}{rgb}{0.23,0.4,0.7}
+%\definecolor{highlightcolorval}{rgb}{1,0,0}
+%%\newcommand{\emphcolor}[1]{\textbf{\textcolor[rgb]{0.23,0.4,0.7}{#1}}}
+%\newcommand{\emphcolor}[1]{\textbf{\textcolor{emphcolorval}{#1}}}
+%\newcommand{\mathcolor}[1]{{\mathbf{\color{emphcolorval}{#1}}}}
+%\newcommand{\highlightcolor}[1]{{\textbf{\color{highlightcolorval}{#1}}}}
+
+
+
+\newcommand{\BB}[0]{\ensuremath{\mathcal{BB}}} %Beta-binomial distribution
+\newcommand{\Laplace}[1]{\ensuremath{\mathcal{L}\set{#1}}} %Laplace Transform
+
+%For confluent hypergeometric functions, etc.
+\newcommand{\pFq}[2]{\,{}_{#1}\mathbb{F}_{#2}}
+
+%Approximately proportional to
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+%Stochastic Calculus
+\newcommand{\G}[1][]{\ensuremath{\mathcal{G}_{#1}}} %Generator for stochastic process
+\newcommand{\Ga}[1][]{\ensuremath{\mathcal{G}^{*}_{#1}}} %Adjoint of generator for stochastic process
+
+%General Structure
+\newcommand{\define}[2]{\begin{definition}[\emph{{#1}}]{\  \\ }{#2} \end{definition}}
+\newcommand{\theory}[2]{\begin{theorem}[\emph{{#1}}]{\  \\ }{#2} \end{theorem}}
+\newcommand{\lem}[2]{\begin{lemma}[\emph{{#1}}]{\  \\ }{#2} \end{lemma}}
+\newcommand{\assume}[3][ass\arabic{ass}]{\begin{ass}[\label{{#1}}\emph{{#2}}]{{#3}}\end{ass}}
+
+%Layout.  width, filename, caption, label.
+\newcommand{\includediagram}[4][width=\columnwidth] {%
+		\begin{figure}[!htp]%
+				\includegraphics[#1]{#2}%
+				\ifthenelse{\equal{#3}{}}{}{\caption{#3}} % Conditionally shows the caption
+				\ifthenelse{\equal{#4}{}}{}{\label{#4}} % Conditionally shows the alabel
+		\end{figure}
+}
+
+%Layout.  width, filename, caption, label.
+\newcommand{\includecentereddiagram}[4][width=\columnwidth] {%
+		\begin{figure}[!htp]%
+		\centering
+				\includegraphics[#1]{#2}%
+				\ifthenelse{\equal{#3}{}}{}{\caption{#3}} % Conditionally shows the caption
+				\ifthenelse{\equal{#4}{}}{}{\label{#4}} % Conditionally shows the alabel
+		\end{figure}
+}
+
+\newcommand{\includepsfragfig}[5][width=\columnwidth] {%
+		\begin{figure}[!htp]%
+			\centering		
+				\psfragfig[#1]{#2}{#5} %	
+				\ifthenelse{\equal{#3}{}}{}{\caption{#3}} % Conditionally shows the caption
+				\ifthenelse{\equal{#4}{}}{}{\label{#4}} % Conditionally shows the alabel
+		\end{figure}
+}
+
+
+%Environment for collaboration/commenting.  Eventually this could use a different or nested mechanism.
+%The idea of the argument is to put in your initials.  Then a further comment if you want afterward?
+\newenvironment{changed}[1]{\marginpar{\color{blue}#1}\begin{changebar}}{\end{changebar}}
+\newcommand{\makecomment}[2][]{\marginpar{\color{blue}#1}\begin{changebar}\color{blue}#2\end{changebar} \color{black}}
+
+\newcommand{\optproblem}[1]{\pscirclebox{\text{\textbf{#1}}}\quad}
+
+%Environment for adding subequations in an align environment.  Thanks to: http://www.latex-community.org/forum/viewtopic.php?f=46&t=11488&p=44359
+%USAGE example:
+%	\begin{align}
+%\subeqblock	 %Resets the subequation counter.
+%	a &= b\\
+%\subeq		sub1 &= 1\\
+%\subeq		sub2 &= 1\\
+%a2 &= 2
+%\end{align}
+
+\newcounter{subeqcount}
+\renewcommand{\thesubeqcount}{\theequation.\alph{subeqcount}}
+\newcommand{\subeqblock}{\setcounter{subeqcount}{0}\refstepcounter{equation}}
+\newcommand{\subeq}{\refstepcounter{subeqcount}\tag{\thesubeqcount}}
+
+
+%Vulgar Fractions
+%\newcommand{\vhalf}{\vfrac{1}{2}}
+
+%Snap Operator
+\newcommand{\snap}[2]{\mathbb{S}_{#1}\left(#2\right)}
+
+
+% Used for adding pdf links for citations, etc.  Requires 4 parameters.  Uses the xr-hyper as well to support external references.
+\newcommand{\pdfmetadata}[4]{%
+	\usepackage{xr-hyper}  %Must occur before hyperref.
+	\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+	\usepackage[
+		bookmarks=false,
+		pdfstartview={FitV},
+		pdftitle={#1},
+		pdfauthor={#2},
+		pdfcreator={#2},
+		pdfkeywords={#3},
+		pdfsubject={#4},
+		colorlinks=true,
+		linkcolor=darkgray,
+		citecolor=darkgray,
+		urlcolor=darkgray,
+		filecolor=darkgray,
+		anchorcolor=darkgray, 
+		breaklinks]
+{hyperref}
+	\addcref %Has to add in the cref package last!
+}
+\newcommand{\addcref}[0]{ %Can use this directly if not using pdfmetadata
+	\usepackage[capitalise,noabbrev]{cleveref} %
+	\crefname{equation}{}{} %
+	\crefname{assumption}{Assumption}{Assumptions}	
+	\crefname{property}{Property}{Properties}	
+}
+
+
+% Add appendix commands.  The ##1 is a nested #1 that doesn't expand.
+\def\appendixtitles{%
+\appendix
+\makeatletter
+\def\@seccntformat##1{Appendix\ \csname the##1\endcsname\quad}
+\makeatother
+\makeatletter
+\def\@seccntformat##1{\csname Pref@##1\endcsname \csname the##1\endcsname\quad}
+\def\Pref@section{Appendix~}
+\makeatother
+\numberwithin{equation}{section}
+}
+
+\newcommand*\widefbox[1]{\fbox{\hspace{1em}#1\hspace{1em}}} %For use with empheq
+
+% Add appendix commands.  The ##1 is a nested #1 that doesn't expand.
+\def\technicalappendixtitles{%
+\appendix
+\makeatletter
+\def\@seccntformat##1{Technical Appendix\ \csname the##1\endcsname\quad}
+\makeatother
+\makeatletter
+\def\@seccntformat##1{\csname Pref@##1\endcsname \csname the##1\endcsname\quad}
+\def\Pref@section{Technical Appendix~}
+\makeatother
+\numberwithin{equation}{section}
+}
+
+%Moves figures.
+\newcommand{\figureoutlocation}{C:/Windows/Temp/ } %Would be nice to get the auxilary file location
+\newcommand{\movefigures}[2][*.eps]{ \immediate\write18{robocopy #2 \figureoutlocation #1}}
+
+%Make footnotes with no numbering.
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+

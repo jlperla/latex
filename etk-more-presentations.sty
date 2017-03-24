@@ -1,0 +1,30 @@
+% $Rev: 1 $
+% $Date: 2015-01-29 15:42:05 -0800 (Thu, 29 Jan 2015) $
+% $LastChangedBy: jlperla $
+
+
+% Author: Jesse Perla, Christopher Tonetti (c) 2008 - 2011
+% Use, modification and distribution are subject to the 
+% Boost Software License, Version 1.0. (See accompanying file 
+% LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+%Any presentation specific code.  Conflicts with beamer colors, so redoing the commenting commands here...
+%I don't think that margin paragraphs, color bars, etc. work with beamer.  So just tagging inline code with color.
+\renewenvironment{changed}[1]{\color{red}}{\color{black}} %This isn't very good ... perhaps we should store the old color instead.
+\renewcommand{\makecomment}[2][]{\color{red}#1:#2}
+
+%This is necessary to get bibtex to work with beamer
+\def\newblock{}
+
+%These are for expanding items.... Can turn them off with the etk-disable-steps option.
+\newenvironment{stepenumerate}{\ifthenelse{\boolean{is-etk-disable-steps}}{\begin{enumerate}}{\begin{enumerate}[<+->]}}{\end{enumerate}}
+\newenvironment{stepitemize}{\ifthenelse{\boolean{is-etk-disable-steps}}{\begin{itemize}}{\begin{itemize}[<+->]}}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\ifthenelse{\boolean{is-etk-disable-steps}}{\begin{enumerate}}{\begin{enumerate}[<+-| alert@+>]}}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\ifthenelse{\boolean{is-etk-disable-steps}}{\begin{itemize}}{\begin{itemize}[<+-| alert@+>]}}{\end{itemize} }
+
+\definecolor{emphcolorval}{rgb}{0.23,0.4,0.7}
+\definecolor{highlightcolorval}{rgb}{1,0,0}
+%\newcommand{\emphcolor}[1]{\textbf{\textcolor[rgb]{0.23,0.4,0.7}{#1}}}
+\newcommand{\emphcolor}[1]{\textbf{\textcolor{emphcolorval}{#1}}}
+\newcommand{\mathcolor}[1]{{\mathbf{\color{emphcolorval}{#1}}}}
+\newcommand{\highlightcolor}[1]{{\textbf{\color{highlightcolorval}{#1}}}}
