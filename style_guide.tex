@@ -1,0 +1,272 @@
+\documentclass[12pt,etk-draft]{etk-article}
+\usepackage{pstool} 
+
+\pdfmetadata{Style Guide for Lecture Notes}{Jesse Perla}{style guide, latex}{Lecture Notes}
+\usepackage{etk-bib}
+\VerbatimFootnotes %Needed before \begin{document}
+
+%Can use this to emphasize text
+\usepackage{empheq}
+\definecolor{emphcolorval}{rgb}{0.23,0.4,0.7}
+\definecolor{highlightcolorval}{rgb}{1,0,0}
+%\newcommand{\emphcolor}[1]{\textbf{\textcolor[rgb]{0.23,0.4,0.7}{#1}}}
+\newcommand{\emphcolor}[1]{\textbf{\textcolor{emphcolorval}{#1}}}
+\newcommand{\mathcolor}[1]{{\mathbf{\color{emphcolorval}{#1}}}}
+\newcommand{\highlightcolor}[1]{{\textbf{\color{highlightcolorval}{#1}}}}
+
+%\movefigures{./figures/} %copies figures located in a directory to the auxilary location.
+
+\begin{document}
+	\title{Latex Style Guide for RAs and TAs}
+	\author{Jesse Perla \\ University of British Columbia}
+\date{\ifthenelse{\boolean{is-etk-draft}}{Draft Date: \today}{}}
+
+	\maketitle %Print the titlepage and/or header information
+
+
+This document is intended as a style guide for RAs and TAs, and for direct how-to of certain Latex tricks.	
+\section{General Comments on Naming}
+\subsection{File Names and Structure}
+\begin{itemize}
+\item Always use full words, never ad-hoc abbreviations (unless they are standard.  e.g. ``balanced growth path'' $\to$ ``bgp'' is fine since everyone knows what it is)
+\item Always lower case, separated by underbars.  e.g. \verb!perla_paper_1.pdf!
+\item Never have version numbers or information in titles, as they are embedded in the metadata of each document in SVN.
+\end{itemize}
+\subsection{Variable and Label Names}
+\begin{itemize}
+\item As before, avoid ad-hoc abbreviations and use full words wherever possible.  e.g. \verb!prop:graph-beta! as a name instead of \verb!prop:graph-bta!
+\item All macros, etc. should be in lower case unless it is variation of a lower case macro (e.g. \verb!\large! and \verb!\Large!) or to distinguish distinct small vs. large (e.g. \verb!\theta! and \verb!\Theta! are different).  Except in labels, simply concatenate lower case words (e.g. \verb!\includediagram!)
+\item Prefix labels with standards prefixes followed by a colon.  Words can be separated by a dash in labels.  For example, reference to a proposition would be \verb!prop:bgp-equilibrium!.  Equation prefix is \verb!eq:!, Figures prefix is \verb!fig:!, Tables are \verb!tab:!, Definitions environment are \verb!def:!.
+\end{itemize}
+\subsection{Flagging Discussions}
+If you leave something incomplete, are not sure about something, flag it with a \verb!\textbf{TODO: yournotes}!.  This way, a search for TODO will make it easy to ensure there is nothing left incomplete.
+
+
+\section{Packages, Styles, and Macros}
+\subsection{Preamble}
+\begin{itemize}
+\item All of the style files and macros are in the \verb!/libraries/etk_latex! folder from the SVN setup.  Wherever this folder is located, you will need to have the environment variable \verb!TEXINPUTS! set to point to it so latex can find the file.
+\item The baseline style for all articles is \verb!etk-article!, \verb!\documentclass[12pt,etk-draft]{etk-article}!
+\item This includes most of the packages you need, and adds them in the correct order (latex is very fragile for package ordering).
+\item One of the first things you should do after the \verb!\documentclass...! is call \verb!\pdfmetadata!.
+\begin{itemize}
+\item This adds in metadata for the pdf file, but also adds in linking between references and ability to have linked urls.
+\item It must come before many other packages.
+\item The arguments of the macro are: title, author, keywords, and subject.  They can all be blank you you wish.
+\end{itemize}  
+\item If a package you need is missing first try adding the \verb!etk-more-packages.sty! before manually adding your own.  i.e. 
+\begin{itemize}
+\item \verb!\usepackage{etk-more-packages}!
+\item It is crucial to add this package AFTER adding calling the \verb!\pdfmetadata! macro for package ordering.
+\item If that doesn't have the package you need, then add it manually
+\end{itemize}
+\end{itemize}
+\subsection{Bibliography and URLs}
+\begin{itemize}
+\item In order to use a bibliography, first add in \verb!\usepackage{etk-bib}!
+\item Next, wherever you wish to add in the bibliography, use \verb!\bibliography{etk-references}!
+\item To cite, use use \verb!\citet{LjungqvistSargent2012}!, to get something like  \cite{LjungqvistSargent2012}
+\item Note that all bibliography items are centralized in the \verb!etk-references.bib! file from SVN.  This will be available to latex through the \verb!BIBINPUTS! environment variable in the setup.  There are a lot of bibliography items there, so check for the key before adding it.
+\item For links: use \verb!http://tex.stackexchange.com/! to get \url{http://tex.stackexchange.com/}
+\item For editing the bibliography file, consider using jabref
+\begin{itemize}
+\item Regardless, the standardization of the bibtex key name is \verb![authors3][year]!
+\item The easiest way to do this is go to JabRef preferences, choose BibTeX key generator, and put in the Default pattern.  Then you can automatically generate keys in jabref with Control-G.
+\item When generating the bibtex entry, try to be as thorough as possible by exporting bibtex from the online journal link, \url{https://ideas.repec.org/}, \url{https://scholar.google.com}, etc.
+\end{itemize}
+\end{itemize}
+\subsection{Macros}\label{sec:macros}
+\begin{itemize}
+\item Most of the macros collected are in the file \verb!etk-base.sty!
+\item The whole point of latex is to separate the presentation from the content as much as possible.  Therefore, try to use macros whenever possible to simplify the actual content.
+\item If the macro doesn't exist, then add it at the top of the file.  Later, these can be refactored to \verb!etk-base.sty! if appropriate.  For example, if you keep finding yourself typing \verb!\mathbb{Q}^{\min}! for $\mathbb{Q}^{\min}$ many times, then create a macro
+\begin{itemize}
+\item  \verb!\Qmin! is created by \verb!\newcommand{\Qmin}[0]{\mathbb{Q}^{\min}}!
+\end{itemize}
+\item Keep all macro definitions in the preamble whenever possible to allow easier refactoring
+\end{itemize}
+
+
+
+\section{General Comments}\label{sec:general-comments}
+\paragraph{Consistency for Copy/Paste!}  The most important goal is to ensure consistency for copy/paste when changing notation, etc.
+\begin{itemize}
+\item For example using both \verb!a_z! and \verb!a_{z}! makes it very hard to search for them.
+\item Another is failing to separate terms.  For example, $A z$ represented as \verb!Az! rather than \verb!A z!.
+\item This is especially important with subscripts.  i.e. $x_t P_t$ should be \verb!x_t P_t! rather than \verb!x_tP_t!
+\item Another is using \verb!\infinity! and \verb!\infty! in the same file.  Using one (I prefer \verb!\infinity!) makes it easier to change notation between finite and infinite horizon.
+\end{itemize}
+
+\paragraph{Verbatim and Code listings}
+The verbatim environment is done with \verb=\verb!my verbatim text!= %Note you can swap what denotes the start/end of verbatim as the first character after the \verb, in csae you need exclamation points.
+\paragraph{Sections, etc.}
+Use as many sections, subsections, and paragraphs as possible.  Do not put in your own formatting if you can help it.
+
+\paragraph{Equations and Numbering}
+\begin{itemize}
+\item Do not use \verb!\begin{eqnarray}!..., use \verb!\begin{align}! or \verb!\begin{falign}! instead.
+\item Avoid using \verb!$$ a=b $$! and use \verb!\begin{equation}...! instead
+\item Keep equation numbers as much as possible (i.e. don't use \verb!\begin{equation*}! in general, and don't use \verb!\nonumber! in \verb!align! environment very often).  It is always nice to have more equation numbers to refer to.
+\item Use \verb!\intertext{...}! to embed text lines in the \verb!align! environment, such as
+\begin{align}
+\intertext{Text with a footnote\footnotemark}
+a &= b\label{eq:ab2}\\
+\intertext{Adding some text which refers to \cref{eq:ab2}}
+c &= d
+\end{align}
+\item In normal text, you can add footnotes with \verb!\footnote{...}!.  However, in an \verb!align! environment, you need to add them with a \verb!\footnotemark! and a \verb!footnotetext! separately, such as 
+\begin{align}
+\alpha &= \beta^{\epsilon}
+\end{align}\footnotetext{The footnotetext go in the order of the from the footnotemark, and must be added after the \verb!align! is complete.  Also, see the \verb!\VerbatimFootnotes! macro required in the preamble for verbatim to work in footnotes.}
+
+\end{itemize}
+\paragraph{Fractions}
+\begin{itemize}
+\item \verb!\frac{}{}! is adaptive to the type of text it is used within, prefer it.  Using it makes copy/paste easier.
+\item If the size needs to be changed, then use \verb!\tfrac{}{}! sparingly, or \verb!\dfrac{}{}! even more rarely.
+\end{itemize}
+\paragraph{Labels}
+\begin{itemize}
+\item Don't use \verb!\ref! for referring to labels.  Instead use \verb!\cref!.  This package will take care of the established style for the references, adding in `and`, etc. 
+\item For example, \verb!\cref{sec:macros,sec:general-comments,eq:ab}! looks like: \cref{sec:macros,sec:general-comments,eq:ab}
+\item The only quirk to \verb!\cref! is that you can't put spaces between the different labels.  Otherwise, it is pretty clever
+\end{itemize}
+\paragraph{Equation Spacing and Super/subscripts}
+\begin{itemize}
+\item Don't use tabs except for indentations of lines and equations
+\item Try not avoid extraneous spaces in equations, except around equal signs and grouping of terms.  For example,
+\begin{itemize}
+\item Prefer: \verb!a^2 = b_D + a(1 + d)! to: \verb!a ^2 = b_D + a ( 1 + d)!
+\end{itemize}
+\item For uniary subscript and superscripts, do not use brackets.  i.e. prefer \verb!a_b! and \verb!a^2! to \verb!a_{b}! and \verb!a^{2}!.  This makes find-replace easier.
+\item For functions, prefer consistent spacing after commas. i.e. use \verb!f(x, y)!
+\end{itemize}
+
+\section{A Few Examples and Preferences}
+\begin{itemize}
+\item Matrices, such as $\begin{bmatrix} a & b \end{bmatrix}$ and 
+\begin{equation}
+\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix}
+\end{equation}
+\item Derivatives, prefer operator notation where possible
+\begin{itemize}
+\item i.e., use \verb!\D f(x)! which displays as $\D f(x)$, instead of things like $\frac{d f(x)}{d x}$
+\item For partials, use use \verb!\D[x] f(x, y)! which displays as $\D[x] f(x, y)$ instead of $\frac{\partial f(x,y)}{\partial x}$
+\item Also reasonable to use the $f'(x)$ notation for univariate derivatives.
+\end{itemize}
+\item Expectations and conditional expectations use a set of macros
+\begin{itemize}
+\item $\expec{f(x)}$ or $\expec[t]{f(x)}$ or conditional $\condexpec{f(x, y)}{y}$ and $\condexpec[t]{f(x, y)}{y}$
+\item Variance and coefficient of variation, $\var{f(x)}$ and $\cv{f(x)}$
+\end{itemize}
+\item Probabilities and conditional probabilities: $\prob{x = 2}$ and $\cprob{x + y = 2}{y = 1}$
+\item Real and natural numbers $\R$ and $\N$
+\item Distribution
+\begin{itemize}
+\item Normal distribution $\normdist{\mu}{\sigma^2}$.  Also, a reasonable alternative is the common notation $\Phi(\mu,\sigma^2)$ for the cdf and $\phi(\mu, \sigma^2)$ for the pdf.
+\item Lognormal distribution $\lognormdist{\mu}{\sigma^2}$
+\item Exponential Distribution $\expdist{\lambda}$
+\item Pareto Distribution: $\paretodist{x_0}{\alpha}$
+\end{itemize}
+\item For integrals, prefer to put to distribution instead of the PDF, where possible.
+\begin{itemize}
+\item i.e., for cdf $F(x)$ and pdf $f(x)$, prefer $\int g(x) \diff F(x)$ to $\int g(x) f(x) \diff x$
+\item Always use \verb!\diff! instead of just \verb!d! for the differential.
+\item For integrating over parameterized distribution, put in the variable of integration before the parameters i.e. $\int g(x) \diff \Phi(x ; \mu, \sigma^2)$
+\end{itemize}
+\item Indictator function, Dirac Delta, and Heaviside: $\indicator{x = 2}$, $\dirac{x}$, and $\heaviside{x}$.
+\item Absolute value and norm, $\abs{x + y}$ and $\norm{x}$
+\item Argmin and argmax: $\argmin{x \in \R}{x + y}$ and $\argmax{x\geq 0}{x + y}$
+\item To get limits directly under the equation within a line: $\lim\limits_{x \to 0} f(x)$
+\item For infinity, use \verb!\infinity! rather than \verb!\infty! (which I never remember and we need consistency for find/replace)
+\item A good way to format maximization problems
+\begin{align}
+\max_{x \geq 0} &\left\{ f(x) + \sum_{n=0}^{\infinity}\Phi_n(x)\right\}\\
+& \st h(x) = 0
+\end{align}
+\item Dealing with cases in functions
+\begin{equation}
+f(x) = \begin{cases}
+x & \text{if } x \leq 0\\
+2 x & \text{otherwise}
+\end{cases}
+\end{equation}
+\end{itemize}
+
+
+\section{More Examples of Annotation/Layout Structure}
+\begin{itemize}
+\item Example with under-braces and over-braces:
+\begin{align}
+\underbrace{f(x)}_{\text{stuff}} &= \overbrace{G(x)}^{\text{stuff}} + \underbrace{H(x)}_{\begin{smallmatrix}\text{multiple lines} \\ \text{of notes} \end{smallmatrix}} 
+\end{align}
+\item Emphasized entire set of equations, such as the final results after a bunch of algebra
+\begin{empheq}[box=\widefbox]{align} %Could also put {equation*}, etc. for other environments
+a &= b\label{eq:ab}\\
+c &= d
+\end{empheq}
+\item Boxing only part of an equation for emphasis
+\begin{equation}
+a = b + \boxed{\frac{d + e}{f^2}}
+\end{equation}
+\item Easy way to give equation names.  But this will cut down on the space available for equations, so consider breaking into a separate \verb!flalign! after the named equations if it gets too compact
+\begin{flalign}
+x_{t+1} &= A x_t & \text{[Evolution]}\\
+y_t &= G x_y & \text{[Observation]}
+\end{flalign}
+
+\item Can change highlight color with, \verb!\definecolor{highlightcolor}{rgb}{1,0,0}!
+\definecolor{highlightcolor}{rgb}{1,0,0}
+\item Emphasized test: \emphcolor{TEXT}, Emphasized math $\mathcolor{x}$ or part of an equation 
+\begin{equation}
+f(x) = a + b \left[ \mathcolor{c^2} + b \right]
+\end{equation}
+\item Propositions, such as in \cref{prop:my-proposition}, and proofs can be linked:
+\begin{proposition}[My Proposition]\label{prop:my-proposition}
+Description of the proposition... $a = a$.
+\begin{proof}
+give a proof....
+\end{proof}
+\end{proposition}
+\item Definitions such as \cref{def:my-def1}
+\begin{definition}[My Definition]\label{def:my-def1}
+My definition text...
+\end{definition}
+\end{itemize}
+
+\section{Infinite Sums and Sets}
+A few variations on these patterns (with some optional arguments)
+\begin{itemize}
+\item $\sumlimits{j}$, $\sumlimits{t}$, $\sumlimits[T]{t}$
+\item $\sumpdv{t}, \sumpdv{j}, \sumpdv[T]{t}$
+\item $\set{A,B}, \setlimits{j}{c_j}, \setlimits[\infinity]{t}{c_t, A_{t+1}}$
+\item $\sumpdvst{t}, \sumpdvst{j}, \sumpdvst[T]{t}$
+\end{itemize}
+
+\section{Diagrams and Code}
+\begin{itemize}
+\item In general, prefer \verb!.eps! with using \verb!\psfrag! to typeset varaibles with latex
+\item See \cref{fig:test1} for an example.
+\includepsfragfig[width=5.5cm]{figures/test_1}{Title of the figure}{fig:test1}{
+	\psfrag{A}{$\alpha^2$}
+}
+\item Note that the \verb!A! in the picture is replaced with the \verb!\psfrag{A}{$\alpha^2$}! command.
+\item Use single character replacements where possible (otherwise editing the file in Adobe Illustrator doesn't work)
+\item Finally, see the \verb!\usepackage{pstool}! at the top of the file.  This setup to generate files will only regenerate them when you edit the underlying \verb!.eps! file.  So changing the width of the box or the \verb!\psfrag! commands won't immediately display.
+\begin{itemize}
+\item To regenerate all of the files, you can swap \verb!\usepackage{pstool}! with\\ \verb!\usepackage[crop=preview,process=all,cleanup={.tex,.dvi,.ps,.pdf,.log}]{pstool}!, which deletes all files and recreates them.
+\item When you are done, switch it back to \verb!\usepackage{pstool}! so you don't have to recompile every time.
+\end{itemize}
+\item The \verb!\movefigures{./figures/}! at the top of the file will copy all \verb!.eps! files from that folder location over, so you don't have to keep the diagrams in the same location as the \verb!.tex! files. \textbf{TODO: The movefigures won't work under os/x yet.  Keep in a subdirectory}
+\item To display an line short chunk of computer code, just use verbatim, \verb!A = eig(C)!.  For larger sections,\textbf{Todo: turn on later}
+%\begin{lstlisting}
+% A  = Q * B;
+% c = eig(A);
+% display(A);
+% \end{lstlisting}
+\end{itemize}
+\bibliography{etk-references}
+\end{document}
