@@ -1,14 +1,4 @@
-% $Rev: 111 $
-% $Date: 2017-02-20 15:38:40 -0800 (Mon, 20 Feb 2017) $
-% $LastChangedBy: jlperla $
-
-
-% Author: Alistair Wilson, Jesse Perla (c) 2008
-% Use, modification and distribution are subject to the 
-% Boost Software License, Version 1.0. (See accompanying file 
-% LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-%
-% Modifed from Original file by Alistair Wilson
+% Author: Alistair Wilson, Jesse Perla (c) 2008-2017
 
 \usepackage{etk-packages}
 
@@ -304,9 +294,15 @@
 \numberwithin{equation}{section}
 }
 
-%Moves figures.
-\newcommand{\figureoutlocation}{C:/Windows/Temp/ } %Would be nice to get the auxilary file location
-\newcommand{\movefigures}[2][*.eps]{ \immediate\write18{robocopy #2 \figureoutlocation #1}}
+%Copies all figures to the local folder.  Only replaces (and changes the timestamp) if modified.
+\newcommand{\movefigures}[2][*.eps]{%
+		\ifwindows%
+			\immediate\write18{robocopy #2 . #1}%
+		\else%
+			\immediate\write18{cp -u #2/#1 .}%			
+		\fi%
+}
+
 
 %Make footnotes with no numbering.
 \newcommand\blfootnote[1]{%
