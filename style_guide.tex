@@ -1,8 +1,8 @@
 \documentclass[12pt,etk-draft]{etk-article}
 \usepackage{pstool} 
-
-\pdfmetadata{Style Guide for Lecture Notes}{Jesse Perla}{style guide, latex}{Lecture Notes}
 \usepackage{etk-bib}
+\pdfmetadata{Style Guide for Lecture Notes}{Jesse Perla}{style guide, latex}{Lecture Notes}
+
 \VerbatimFootnotes %Needed before \begin{document}
 
 %Can use this to emphasize text
@@ -30,7 +30,6 @@ This document is intended as a style guide for RAs and TAs, and for direct how-t
 \begin{itemize}
 \item Always use full words, never ad-hoc abbreviations (unless they are standard.  e.g. ``balanced growth path'' $\to$ ``bgp'' is fine since everyone knows what it is)
 \item Always lower case, separated by underbars.  e.g. \verb!perla_paper_1.pdf!
-\item Never have version numbers or information in titles, as they are embedded in the metadata of each document in SVN.
 \end{itemize}
 \subsection{Variable and Label Names}
 \begin{itemize}
@@ -45,7 +44,7 @@ If you leave something incomplete, are not sure about something, flag it with a 
 \section{Packages, Styles, and Macros}
 \subsection{Preamble}
 \begin{itemize}
-\item All of the style files and macros are in the \verb!/libraries/etk_latex! folder from the SVN setup.  Wherever this folder is located, you will need to have the environment variable \verb!TEXINPUTS! set to point to it so latex can find the file.
+\item All of the style files and macros are in the \verb!/libraries/latex! folder from the Git setup .  Wherever this folder is located, you will need to have the environment variable \verb!TEXINPUTS! set to point to it so latex can find the file.
 \item The baseline style for all articles is \verb!etk-article!, \verb!\documentclass[12pt,etk-draft]{etk-article}!
 \item This includes most of the packages you need, and adds them in the correct order (latex is very fragile for package ordering).
 \item One of the first things you should do after the \verb!\documentclass...! is call \verb!\pdfmetadata!.
@@ -66,8 +65,8 @@ If you leave something incomplete, are not sure about something, flag it with a 
 \item In order to use a bibliography, first add in \verb!\usepackage{etk-bib}!
 \item Next, wherever you wish to add in the bibliography, use \verb!\bibliography{etk-references}!
 \item To cite, use use \verb!\citet{LjungqvistSargent2012}!, to get something like  \cite{LjungqvistSargent2012}
-\item Note that all bibliography items are centralized in the \verb!etk-references.bib! file from SVN.  This will be available to latex through the \verb!BIBINPUTS! environment variable in the setup.  There are a lot of bibliography items there, so check for the key before adding it.
-\item For links: use \verb!http://tex.stackexchange.com/! to get \url{http://tex.stackexchange.com/}
+\item Note that all bibliography items are centralized in the \verb!etk-references.bib! file from Git.  This will be available to latex through the \verb!BIBINPUTS! environment variable in the setup.  There are a lot of bibliography items there, so check for the key before adding it.
+\item For links: use \verb!\url{http://tex.stackexchange.com/}! to get \url{http://tex.stackexchange.com/}
 \item For editing the bibliography file, consider using jabref
 \begin{itemize}
 \item Regardless, the standardization of the bibtex key name is \verb![authors3][year]!
@@ -250,7 +249,7 @@ A few variations on these patterns (with some optional arguments)
 \begin{itemize}
 \item In general, prefer \verb!.eps! with using \verb!\psfrag! to typeset varaibles with latex
 \item See \cref{fig:test1} for an example.
-\includepsfragfig[width=5.5cm]{figures/test_1}{Title of the figure}{fig:test1}{
+\includepsfragfig[width=5.5cm]{test_1}{Title of the figure}{fig:test1}{
 	\psfrag{A}{$\alpha^2$}
 }
 \item Note that the \verb!A! in the picture is replaced with the \verb!\psfrag{A}{$\alpha^2$}! command.
@@ -260,7 +259,7 @@ A few variations on these patterns (with some optional arguments)
 \item To regenerate all of the files, you can swap \verb!\usepackage{pstool}! with\\ \verb!\usepackage[crop=preview,process=all,cleanup={.tex,.dvi,.ps,.pdf,.log}]{pstool}!, which deletes all files and recreates them.
 \item When you are done, switch it back to \verb!\usepackage{pstool}! so you don't have to recompile every time.
 \end{itemize}
-\item The \verb!\movefigures{./figures/}! at the top of the file will copy all \verb!.eps! files from that folder location over, so you don't have to keep the diagrams in the same location as the \verb!.tex! files. \textbf{TODO: The movefigures won't work under os/x yet.  Keep in a subdirectory}
+\item The \verb!\movefigures{./figures/}! at the top of the file will copy all \verb!.eps! files from that folder location over, so you don't have to keep the diagrams in the same location as the \verb!.tex! files. \textbf{TODO: The movefigures won't work under os/x yet.}
 \item To display an line short chunk of computer code, just use verbatim, \verb!A = eig(C)!.  For larger sections,\textbf{Todo: turn on later}
 %\begin{lstlisting}
 % A  = Q * B;
