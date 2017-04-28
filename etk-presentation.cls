@@ -40,6 +40,8 @@
 \usecolortheme{shark}
 \setbeamercolor{section in head/foot}{fg=red}
 
+\usefonttheme[onlymath]{serif}
+
 %\useinnertheme{default}
 
 %What about these fonts?
