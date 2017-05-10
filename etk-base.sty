@@ -312,3 +312,23 @@
 	\endgroup
 }
 
+\newcommand\getenv[2][]{%
+	\immediate\write18{kpsewhich --var-value #2 > \jobname.tmp}%
+	\CatchFileDef{\temp}{\jobname.tmp}{\endlinechar=-1}%
+	\immediate\write18{del \jobname.tmp}%
+	\if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}%
+
+\newcommand{\mintedwithaux}[0]{%
+\ifwindows%
+	\getenv[\TEXAUX]{TEXAUX}%
+	\ifthenelse{\equal{\TEXAUX}{}}{%
+		\usepackage{minted}%
+	}{%
+		\usepackage[outputdir=\TEXAUX]{minted}%
+	}%
+\else%
+	\usepackage{minted}%
+\fi%
+}
+
+

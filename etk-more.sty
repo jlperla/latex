@@ -1,8 +1,3 @@
-% $Rev: 1 $
-% $Date: 2015-01-29 15:42:05 -0800 (Thu, 29 Jan 2015) $
-% $LastChangedBy: jlperla $
-
-
 % Author: Jesse Perla (c) 2008
 % Use, modification and distribution are subject to the 
 % Boost Software License, Version 1.0. (See accompanying file 
@@ -13,14 +8,15 @@
 
 \newcommand{\getmap}[2][mymap]{{%
 		\DTLforeach[\DTLiseq{\Key}{#2}]{#1}{\Key=Key,\Value=Value}{\Value}\DTLsavelastrowcount{\vals}\ifthenelse{\equal{\vals}{0}}{\em{[No #2]}}{}}}
-		
-\lstset{language=C++,
-		basicstyle=\footnotesize,
-		frame=single,
-		breaklines=true,
-		breakatwhitespace=true,
-		numbers=left,
-		numberstyle=\tiny,
-		xleftmargin=5mm,
-		tabsize=2
-}
+
+%Use minted instead		
+%\lstset{language=C++,
+%		basicstyle=\footnotesize,
+%		frame=single,
+%		breaklines=true,
+%		breakatwhitespace=true,
+%		numbers=left,
+%		numberstyle=\tiny,
+%		xleftmargin=5mm,
+%		tabsize=2
+%}
