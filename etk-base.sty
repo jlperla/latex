@@ -297,7 +297,13 @@
 %Copies all figures to the local folder.  Only replaces (and changes the timestamp) if modified.
 \newcommand{\movefigures}[2][*.eps]{%
 		\ifwindows%
-			\immediate\write18{robocopy #2 . #1}%
+			\getenv[\TEXAUX]{TEXAUX}%
+			\ifthenelse{\equal{\TEXAUX}{}}{%
+				\immediate\write18{robocopy #2 . #1}%
+			}{%				
+%				`robocopy #2 \TEXAUX\space #1`
+				\immediate\write18{robocopy #2 \TEXAUX\space #1}%
+			}%
 		\else%
 			\immediate\write18{cp -u #2/#1 .}%			
 		\fi%
