@@ -337,4 +337,17 @@
 \fi%
 }
 
+%Requires the datatool package.
+\newcommand{\loadmap}[2][map]{%
+	\DTLloaddb{#1}{#2}%
+	\DTLforeach{#1}{\@Key=Key,\@Value=Value}{\expandafter\edef\csname #1\@Key\endcsname{\@Value}}%
+} %Loads into the database stores.
+
+
+%OLD Version
+%\newcommand{\loadmap}[2][mymap]{\DTLloaddb{#1}{#2}} %Loads into the database stores.
+%\newcommand{\getmap}[2][mymap]{{%
+%		\DTLforeach[\DTLiseq{\Key}{#2}]{#1}{\Key=Key,\Value=Value}{\Value}\DTLsavelastrowcount{\vals}\ifthenelse{\equal{\vals}{0}}{\em{[No #2]}}{}}}
+
+
 

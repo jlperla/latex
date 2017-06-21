@@ -1,3 +1,4 @@
 *.synctex.gz
 *.aux
 /test_1.pdf
+*.pdf

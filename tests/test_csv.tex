@@ -1,0 +1,15 @@
+\documentclass{etk-article}
+\usepackage{datatool,filecontents}
+
+\begin{document}
+\begin{filecontents}{testdata.csv}
+	Key,Value
+	firstkey,0.002
+	secondkey,1.0
+	thirdkey,a string
+\end{filecontents}	
+	
+\loadmap{testdata.csv}
+\mapfirstkey,\mapsecondkey,\mapthirdkey\\
+
+\end{document}
