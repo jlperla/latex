@@ -337,8 +337,18 @@
 \fi%
 }
 
-%Requires the datatool package.
+
 \newcommand{\loadmap}[2][map]{%
 	\DTLloaddb{#1}{#2}%
-	\DTLforeach{#1}{\@Key=Key,\@Value=Value}{\expandafter\edef\csname #1\@Key\endcsname{\@Value}}%
-} %Loads into the database stores.
+	\DTLforeach{#1}{\Key=Key,\Value=Value}{%
+		\expandafter\def\csname#1\Key\expandafter\endcsname\expandafter{\Value}%
+	}%
+}
+\newcommand{\mapvar}[2][map]{\csname #1#2\endcsname}
+
+
+%%Requires the datatool package.
+%\newcommand{\loadmap}[2][map]{%
+%	\DTLloaddb{#1}{#2}%
+%	\DTLforeach{#1}{\@Key=Key,\@Value=Value}{\expandafter\edef\csname #1\@Key\endcsname{\@Value}}%
+%} %Loads into the database stores.

@@ -10,6 +10,12 @@
 \end{filecontents}	
 	
 \loadmap{testdata.csv}
-\mapfirstkey,\mapsecondkey,\mapthirdkey\\
+\loadmap[newmap]{testdata.csv}
+
+%\mapfirstkey,\mapsecondkey,\mapthirdkey\\
+
+\mapvar[map]{firstkey}
+\mapvar[newmap]{thirdkey}
+\mapvar{firstkey}
 
 \end{document}
