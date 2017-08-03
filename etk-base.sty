@@ -205,7 +205,13 @@
 		\end{figure}
 }
 
-
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}}
+	
 %Environment for collaboration/commenting.  Eventually this could use a different or nested mechanism.
 %The idea of the argument is to put in your initials.  Then a further comment if you want afterward?
 \newenvironment{changed}[1]{\marginpar{\color{blue}#1}\begin{changebar}}{\end{changebar}}
