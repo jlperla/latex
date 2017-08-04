@@ -1,9 +1,12 @@
-# Latex Library Setup (for Coauthors and RAs)
+# Latex Library
+The following are setup guidelines for the latex environment.
 
 ## Windows
 Clone the following repositories (by going to the link on the Web, and choosing "Open in Desktop" as described above).  The local directories suggested but not essential:
-- For my coauthors: If you have access to the repository, https://github.com/jlperla/bibtex.git  to `c:\working\libraries\bibtex`
+
 - Clone https://github.com/econtoolkit/latex.git to `c:\working\libraries\latex`
+
+- For my coauthors: If you have access to the bibtex repository, clone https://github.com/jlperla/bibtex.git  to `c:\working\libraries\bibtex`
 
 While you could adapt to use any Latex editor, I find that MiKTeX and TexStudio are the easiest.  Adapt the following paths if you installed the repositories in a different location.
 - Ensure that [MiKTeX](http://miktex.org) is installed.  Choose "Full Installation" and "Install Missing Packages on the Fly".
