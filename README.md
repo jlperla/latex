@@ -1,5 +1,5 @@
 # Latex Library
-The following are setup guidelines for the latex environment.
+The following are setup guidelines for the latex environment.  If you want to modify the baseline directory from `c:\working\librarires\latex' or the OS/X equivalent, see http://jesseperla.com/setup.html
 
 ## Windows
 Clone the following repositories (by going to the link on the Web, and choosing "Open in Desktop" as described above).  The local directories suggested but not essential:
