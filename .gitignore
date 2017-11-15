@@ -2,3 +2,4 @@
 *.aux
 /test_1.pdf
 *.pdf
+*.log
