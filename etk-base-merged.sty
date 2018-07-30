@@ -1,10 +1,43 @@
-% Author: Alistair Wilson, Jesse Perla (c) 2008-2017
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsopn}
+\usepackage{amstext}
+\usepackage{fancyvrb}
+\usepackage{thmtools}
+\usepackage{setspace}
+\usepackage{ifplatform}
+\usepackage{ifthen}
+\usepackage{catchfile}
 
-\usepackage{etk-packages}
+%%Encoding and fonts
+\usepackage{bbm}
+\usepackage{dsfont}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%\usepackage[latin1]{inputenc}
+%\usepackage{stmaryrd}
+\usepackage{accents}
+
+
+
+%Graphics Stuff, order matters.
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{url}
+
 
 %Utilities for displaying math functions
 %NOTE: SHOULD WE BE USING \DeclareMathOperator from amstex for some of these?  It is supposed to do spacing around pseudo-operators better.
+\usepackage[nohead]{geometry}
 
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{guess}[theorem]{Guess}
+\declaretheorem[numbered=yes]{definition}
+\newtheorem{example}{Example}
 
 \newenvironment{notation}[2][\textwidth]{\textbf{#2}\\ \begin{boxedminipage}[t]{#1}}{\end{boxedminipage}}
 \newtheorem{proposition}{Proposition}
